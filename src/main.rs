@@ -13,7 +13,7 @@ fn hello() -> Json<&'static str> {
 
 #[get("/")]
 fn index() -> &'static str {
-    "Hello, world!"
+    "hi tram"
 }
 
 #[launch]
