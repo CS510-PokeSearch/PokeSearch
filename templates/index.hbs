@@ -1,12 +1,44 @@
+<!doctype html>
 <html>
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <title> PokeSearch </title>
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
       <link rel="stylesheet" type="text/css" href="static/styles.css"/>
     </head>
     <body>
-      <h1>Welcome to {{name}}!</h1>
+      <nav class="navbar navbar-expand-lg navbar-light static-top">
+        <div class="container">
+          <a class="navbar-brand" href="/">
+              <img src="https://pngimg.com/uploads/pokeball/pokeball_PNG21.png" alt="PokeSearch" aria-role="logo">
+          </a>
+          <h1 class="navbar-text">Pok&eacute;Search</h1>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item text-uppercase">
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item text-uppercase">
+              <a class="nav-link" href="about">About</a>
+            </li>
+            <li class="nav-item text-uppercase">
+              <a class="nav-link" href="151">Original 151</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <section class="hero">
+        <div class="container">
+          <div class="col-12">
+            <div class="search">
+              <form>
+                <input class="input" type="text" name="pokemon" placeholder="Search for a Pok&eacute;mon">
+                <button type="submit"><i class="fa fa-search"></i></button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
     </body>
 </html>
