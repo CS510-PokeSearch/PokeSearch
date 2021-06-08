@@ -33,7 +33,7 @@
           <div class="col-12">
             <div class="search">
               <form action="/search" method="post" accept-charset="utf-8">
-                <input type="text" id="pokemon" name="pokemon" placeholder="Search for a Pok&eacute;mon">
+                <input type="text" id="pokemon" name="pokemon" oninput="this.value=this.value.toLowerCase()" placeholder="Search for a Pok&eacute;mon">
                 <button type="submit"><i class="fa fa-search"></i></button>
               </form>
             </div>
