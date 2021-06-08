@@ -1,13 +1,50 @@
+<!doctype html>
 <html>
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-      <link rel="stylesheet" type="text/css" href="static/styles.css"/>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" type="text/css" href="../static/styles.css"/>
     </head>
     <body>
-      <h1>Pokemon is {{name}}!</h1>
-      <h1>Id is {{id}}!</h1>
-      <img src={{sprites.other.official-artwork.front_default}} alt={{name}}>
+      <nav class="navbar navbar-expand-lg navbar-light static-top">
+        <div class="container">
+          <a class="navbar-brand" href="/">
+              <img src="https://pngimg.com/uploads/pokeball/pokeball_PNG21.png" alt="PokeSearch" aria-role="logo">
+          </a>
+          <h1 class="navbar-text">Pok&eacute;Search</h1>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item text-uppercase">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item text-uppercase">
+              <a class="nav-link" href="about">About</a>
+            </li>
+            {{!-- <li class="nav-item text-uppercase">
+              <a class="nav-link" href="151">Original 151</a>
+            </li> --}}
+          </ul>
+        </div>
+      </nav>
+      <div id="single-pokemon" class="card border border-dark shadow" style="width: 18rem;">
+        <img
+          src={{sprites.other.official-artwork.front_default}}
+          class="card-img-top"
+          alt={{name}}
+        />
+        <div class="card-body text-white">
+          <h5 class="card-title">{{name}}</h5>
+          <h6 class="card-text">ID: {{id}}</h6>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            Type(s): {{types.0.type.name}}{{#if types.1.type.name}} / {{types.1.type.name}}{{/if}}
+          </li>
+          {{#each stats}}
+            <li class="list-group-item">{{stat.name}}: {{base_stat}}</li>
+          {{/each}}
+        </ul>
+      </div>
     </body>
 </html>

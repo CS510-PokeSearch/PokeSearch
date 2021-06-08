@@ -18,11 +18,6 @@ use rocket_contrib::serve::StaticFiles;
 use rocket_contrib::templates::Template;
 use std::collections::HashMap;
 use rocket::request::LenientForm;
-use reqwest::Error;
-use reqwest::header;
-use reqwest::blocking::Response;
-use serde::{Serialize, Deserialize};
-use serde_json::Result;
 use serde_json::Value as JsonValue;
 use rocket::response::Redirect;
 
