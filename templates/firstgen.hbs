@@ -9,6 +9,19 @@
     </head>
     <body>
         {{> navbar firstgen=true}}
-        {{> pokemoncard}}
+        <div class="cards">
+            {{#each results as |result|}}
+                <div id="single-pokemon" class="card border border-dark shadow" style="width: 18rem;">
+                    <img
+                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{add_one @index}}.png"
+                        class="card-img-top"
+                        alt={{name}}
+                    />
+                    <div class="card-body text-white">
+                        <h5 class="card-title">#{{add_one @index}} {{capitalize result.name}}</h5>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
     </body>
 </html>

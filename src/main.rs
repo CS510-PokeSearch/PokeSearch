@@ -52,6 +52,26 @@ fn capitalize(
     Ok(())
 }
 
+// handlebars helper to add 1 to index
+fn add_one(
+    h: &Helper,
+    _: &Handlebars,
+    _: &Context,
+    _: &mut RenderContext,
+    out: &mut dyn Output,
+) -> Result<(), RenderError> {
+
+    let param = h
+        .param(0)
+        .ok_or(RenderError::new("Invalid param."))?;
+
+    let new_param = param.value().as_i64().unwrap() + 1;
+    
+    let rendered = format!("{}", new_param);
+    out.write(rendered.as_ref())?;
+    Ok(())
+}
+
 // struct to grab search query
 #[derive(FromForm)]
 struct SearchForm{
@@ -91,13 +111,26 @@ fn search(pokemon: String) -> Template {
         let data: JsonValue = response.json().unwrap();
         Template::render("search", &data)
     } else {
-        println!{"{:?}", pokemon};
         let data = InvalidPokemon {
             query: pokemon,
         };
-        println!{"{:?}", data.query};
         Template::render("invalidsearch", &data)
     }
+}
+
+#[get("/firstgen")]
+fn firstgen() -> Template {
+    let base_url = format!("https://pokeapi.co/api/v2/pokemon/?limit=151");
+    let full_url = &base_url[..];
+    let client = reqwest::blocking::Client::new();
+
+    let response = client.get(full_url)
+        .send()
+        .unwrap(); 
+
+    let data: JsonValue = response.json().unwrap();
+
+    Template::render("firstgen", &data)
 }
 
 // TODO: 404 template
@@ -109,12 +142,11 @@ fn not_found(req: &Request) -> String {
 fn main() {
     rocket::ignite()
         .mount("/static", StaticFiles::from("static"))
-        .mount("/", routes![index, search, search_form])
+        .mount("/", routes![index, search, search_form, firstgen])
         .register(catchers![not_found])
         .attach(Template::custom(|engines| {
-            engines
-                .handlebars
-                .register_helper("capitalize", Box::new(capitalize));
+            engines.handlebars.register_helper("capitalize", Box::new(capitalize));
+            engines.handlebars.register_helper("add_one", Box::new(add_one));
         }))
         .launch();
 }
