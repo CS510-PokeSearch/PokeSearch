@@ -6,9 +6,9 @@
         alt={{name}}
     />
     <div class="card-body text-white">
-        <h5 class="card-title">{{capitalize name}}</h5>
-        <h6 class="card-text">#{{id}}</h6>
-        <h6 class="card-text">{{capitalize types.0.type.name}}{{#if types.1.type.name}} / {{capitalize types.1.type.name}}{{/if}}</h6>
+        <h5 class="card-title">#{{id}} {{capitalize name}}</h5>
+        <img class = "type-icon" src="../img/{{capitalize types.0.type.name}}.png"></img>
+        {{#if types.1.type.name}}<img class = "type-icon" src="../img/{{capitalize types.1.type.name}}.png"></img>{{/if}}
     </div>
     <ul class="list-group list-group-flush">
         {{#each stats}}

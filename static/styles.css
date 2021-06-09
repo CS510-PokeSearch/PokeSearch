@@ -14,6 +14,10 @@ body {
     background: #e27398;
 }
 
+#single-pokemon .card-body img.type-icon {
+    max-width: 100px;
+}
+
 .cards {
     max-width: 1200px;
     margin: 0 auto;

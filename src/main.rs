@@ -142,6 +142,7 @@ fn not_found(req: &Request) -> String {
 fn main() {
     rocket::ignite()
         .mount("/static", StaticFiles::from("static"))
+        .mount("/img", StaticFiles::from("img"))
         .mount("/", routes![index, search, search_form, firstgen])
         .register(catchers![not_found])
         .attach(Template::custom(|engines| {
