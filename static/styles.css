@@ -72,8 +72,13 @@ nav .navbar-brand img {
     color: white !important;
 }
 
-nav .navbar-nav li.nav-item a.nav-link{
+nav .navbar-nav li.nav-item a.nav-link {
     color: white !important;
+}
+
+nav .navbar-nav li.nav-item a.active {
+    color: blue !important;
+    font-weight: bold;
 }
 
 
