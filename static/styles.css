@@ -2,6 +2,10 @@ body {
     background: #ffffff;
 }
 
+.about-link {
+    color: rgb(4, 4, 175) !important;
+}
+
 /* Cards */
 #single-pokemon {
     margin: 0 auto;
@@ -11,7 +15,7 @@ body {
 }
 
 #single-pokemon .card-body {
-    background: #e27398;
+    background: #7c1437;
 }
 
 #single-pokemon .card-body img.type-icon {
@@ -60,7 +64,7 @@ body {
     top: 6px;
     right: 6px;
     color: #fff;
-    background: #e27398;
+    background: #7c1437;
     font-size: 27px;
     height: 65px;
     line-height: 65px;
@@ -72,7 +76,7 @@ body {
 /* Navigation Bar */
 
 nav {
-    background: #e27398;
+    background: #7c1437;
     z-index: 3;
 }
 
@@ -89,7 +93,7 @@ nav .navbar-nav li.nav-item a.nav-link{
 }
 
 nav .navbar-nav li.nav-item a.active {
-    color: blue !important;
+    color: rgb(255, 196, 0) !important;
     font-weight: bold;
 }
 

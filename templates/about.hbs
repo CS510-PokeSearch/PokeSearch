@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title> About </title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" type="text/css" href="../static/styles.css"/>
+    </head>
+    <body>
+        {{> navbar about=true}}
+        <section class="jumbotron" style="min-height: 200px;">
+            <div class="container">
+                <h1 class="display-4">About Pok&eacute;Search</h1>
+                <p class="lead">
+                    Pok&eacute;Search is a web app built with 
+                    <a class="about-link" href="https://www.rust-lang.org/"><b>Rust</b></a>,
+                    <a class="about-link" href="https://rocket.rs/"><b>Rocket web framework</b></a>,
+                    and <a class="about-link" href="https://crates.io/crates/handlebars/"><b>Handlebars templating</b></a>
+                    The app allows users to search for Pokemon and display information about them. 
+                    This information is obtained by fetching data from PokeApi.
+                </p>
+                <br />
+                <p class="lead">
+                    Pok&eacute;Search was created by Jonathan Rivera and Tram Vuong.
+                </p>
+            </div>
+        </section>
+    </body>
+</html>
