@@ -24,7 +24,6 @@ use std::collections::HashMap;
 use rocket::request::LenientForm;
 use serde_json::Value as JsonValue;
 use rocket::response::Redirect;
-use rocket::Request;
 use serde::Serialize;
 
 // handlebars helper to capitalize first letter of strings
@@ -99,6 +98,8 @@ fn search_form(form: LenientForm<SearchForm>) -> Redirect {
     Redirect::to(format!("/search/{}", form.pokemon))
 }
 
+// search page routing
+// gets response from poke api
 #[get("/search/<pokemon>")]
 fn search(pokemon: String) -> Template {
     let base_url = format!("https://pokeapi.co/api/v2/pokemon/{}", pokemon);
@@ -113,11 +114,9 @@ fn search(pokemon: String) -> Template {
         let data: JsonValue = response.json().unwrap();
         Template::render("search", &data)
     } else {
-        println!{"{:?}", pokemon};
         let data = InvalidPokemon {
             query: pokemon,
         };
-        println!{"{:?}", data.query};
         Template::render("invalidsearch", &data)
     }
 }
@@ -138,10 +137,13 @@ fn firstgen() -> Template {
     Template::render("firstgen", &data)
 }
 
-// TODO: 404 template
+// catch 404 and render our own 404 page template
 #[catch(404)]
-fn not_found(req: &Request) -> String {
-    format!("Sorry, '{}' is not a valid path.", req.uri())
+fn not_found() -> Template {
+    let context: HashMap<&str, &str> = [("text", "Looks like you got a little lost.")]
+        .iter().cloned().collect();
+
+    Template::render("not_found", &context)
 }
 
 fn main() {
