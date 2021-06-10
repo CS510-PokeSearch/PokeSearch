@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" type="text/css" href="../static/styles.css"/>
+    </head>
+    <body>
+        {{> navbar firstgen=true}}
+        <div class="cards">
+            {{#each results as |result|}}
+                <div id="single-pokemon" class="card border border-dark shadow" style="width: 18rem;">
+                    <a href="../search/{{name}}">
+                        <img
+                            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{add_one @index}}.png"
+                            class="card-img-top"
+                            alt={{name}}
+                        />
+                    </a>
+                    <div class="card-body text-white">
+                        <h5 class="card-title">#{{add_one @index}} {{capitalize result.name}}</h5>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </body>
+</html>
