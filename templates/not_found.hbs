@@ -9,14 +9,12 @@
     </head>
     <body>
         {{> navbar}}
-        <div id="single-pokemon" class="card border border-dark shadow bg-dark invalid" style="width: 18rem;">
-            <div class="card-body text-white text-center bg-danger">
-                <h2 class="card-title">Who's That Pokemon?!</h2>
-                <h6 class="card-title">"{{query}}" was invalid.</h6>
+        <section class="jumbotron">
+            <div class="container">
+                <img src="../img/unknownquestion.png" alt="unknown question" style="max-width: 100px;">
+                <h1 class="display-4">Uh oh. 404.</h1>
+                <p class="lead">{{text}}</p>
             </div>
-            <button class="btn btn-block btn-light text-uppercase shadow" onclick="window.location.href='/';" style="margin-top: 10px;">
-                Go Back
-            </button>
-        </div>
+        </section>
     </body>
 </html>

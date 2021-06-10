@@ -6,6 +6,7 @@
 //! https://www.youtube.com/watch?v=2RWXeosWhAQ
 //! https://www.shawntabrizi.com/code/combining-rocket-with-reqwest-to-call-an-api-with-rust/
 //! https://github.com/sunng87/handlebars-rust
+//! https://pokeapi.co/
 
 #![feature(proc_macro_hygiene, decl_macro)]
 
@@ -52,7 +53,7 @@ fn capitalize(
     Ok(())
 }
 
-// handlebars helper to add 1 to index
+// handlebars helper to add 1 to index for displaying pokemon ID
 fn add_one(
     h: &Helper,
     _: &Handlebars,
@@ -72,7 +73,7 @@ fn add_one(
     Ok(())
 }
 
-// struct to grab search query
+// struct to grab search query from form
 #[derive(FromForm)]
 struct SearchForm{
     pokemon: String
@@ -84,6 +85,7 @@ struct InvalidPokemon {
     query: String
 }
 
+// index page routing
 #[get("/")]
 fn index() -> Template {
     let context: HashMap<&str, &str> = [("name", "PokeSearch")]
@@ -92,11 +94,15 @@ fn index() -> Template {
     Template::render("index", &context)
 }
 
+// post for search form
 #[post("/search", data = "<form>")]
 fn search_form(form: LenientForm<SearchForm>) -> Redirect {
     Redirect::to(format!("/search/{}", form.pokemon))
 }
 
+
+// search page routing
+// gets response from poke api
 #[get("/search/<pokemon>")]
 fn search(pokemon: String) -> Template {
     let base_url = format!("https://pokeapi.co/api/v2/pokemon/{}", pokemon);
@@ -110,7 +116,7 @@ fn search(pokemon: String) -> Template {
     if response.status().is_success() {
         let data: JsonValue = response.json().unwrap();
         Template::render("search", &data)
-    } else {
+    } else { //if the response fails, render the invalidsearch page
         let data = InvalidPokemon {
             query: pokemon,
         };
@@ -118,6 +124,7 @@ fn search(pokemon: String) -> Template {
     }
 }
 
+// firstgen page routing
 #[get("/firstgen")]
 fn firstgen() -> Template {
     let base_url = format!("https://pokeapi.co/api/v2/pokemon/?limit=151");
@@ -133,10 +140,13 @@ fn firstgen() -> Template {
     Template::render("firstgen", &data)
 }
 
-// TODO: 404 template
+// catch 404 and render our own 404 page template
 #[catch(404)]
-fn not_found(req: &Request) -> String {
-    format!("Sorry, '{}' is not a valid path.", req.uri())
+fn not_found() -> Template {
+    let context: HashMap<&str, &str> = [("text", "Looks like you got a little lost.")]
+        .iter().cloned().collect();
+
+    Template::render("not_found", &context)
 }
 
 fn main() {
